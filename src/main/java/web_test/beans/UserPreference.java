@@ -2,7 +2,7 @@ package web_test.beans;
 
 import java.util.Date;
 
-public class UserPreferences {
+public class UserPreference {
 
     private int id;
     private String key;
@@ -11,12 +11,12 @@ public class UserPreferences {
     private Date timeStamp;
     private boolean isActive;
 
-    public UserPreferences() {
+    public UserPreference() {
         super();
     }
 
-    public UserPreferences(int id, String key, String value, int userIDl, Date timeStamp, boolean isActive) {
-        super();
+    public UserPreference(int id, String key, String value, int userIDl, Date timeStamp, boolean isActive) {
+        this();
         this.id = id;
         this.key = key;
         this.value = value;
@@ -97,7 +97,7 @@ public class UserPreferences {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        UserPreferences other = (UserPreferences) obj;
+        UserPreference other = (UserPreference) obj;
         if (UserIDl != other.UserIDl) {
             return false;
         }

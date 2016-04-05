@@ -2,18 +2,18 @@ package web_test.DAO;
 
 import java.util.List;
 
-import web_test.beans.UserPreferences;
+import web_test.beans.UserPreference;
 
 public interface UserPreferencesDAO {
 
-    public List<UserPreferences> getHistoryUserPerferences4User(int id);
+   List<UserPreference> getHistoryUserPerferences4User(int id);
 
-    public List<UserPreferences> getAllUserPerferences4User(int id);
+    List<UserPreference> getAllUserPerferences4User(int id);
 
-    public List<UserPreferences> getHostoryUserPerferences4User(int id);
+   List<UserPreference> getHostoryUserPerferences4User(int id);
 
-    public boolean addUserPerferences(UserPreferences up, int user_id);
+   boolean addUserPerferences(UserPreference up, int user_id);
 
-    public boolean updateUserPerferences(UserPreferences up);
+    boolean updateUserPerferences(UserPreference up);
 
 }
