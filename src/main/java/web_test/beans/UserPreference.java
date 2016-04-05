@@ -1,10 +1,10 @@
 package web_test.beans;
 
 import java.util.Date;
-@lombok.Data
 
+@lombok.Data
 public class UserPreference {
-    
+
     private int id;
     private String key;
     private String value;

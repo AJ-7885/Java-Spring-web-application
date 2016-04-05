@@ -6,14 +6,14 @@ import web_test.beans.UserPreference;
 
 public interface UserPreferencesDAO {
 
-   List<UserPreference> getHistoryUserPerferences4User(int id);
+    List<UserPreference> getHistoryUserPreferences4User(int user_id);
 
-    List<UserPreference> getAllUserPerferences4User(int id);
+    List<UserPreference> getAllUserPreferences4User(int user_id);
 
-   List<UserPreference> getHostoryUserPerferences4User(int id);
+    UserPreference FindUserPreference4User(String userPreferenceKey, int user_id);
 
-   boolean addUserPerferences(UserPreference up, int user_id);
+    boolean addUserPreference(UserPreference up, int user_id);
 
-    boolean updateUserPerferences(UserPreference up);
+    boolean updateUserPreference(UserPreference up);
 
 }

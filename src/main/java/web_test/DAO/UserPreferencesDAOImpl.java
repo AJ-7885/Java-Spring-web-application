@@ -35,28 +35,27 @@ class UserPreferencesDAOImpl implements UserPreferencesDAO {
     }
 
     @Override
-    public List<UserPreference> getHistoryUserPerferences4User(int id) {
+    public List<UserPreference> getHistoryUserPreferences4User(int user_id) {
+         return listOfUserPreferences;
+    }
+
+    @Override
+    public List<UserPreference> getAllUserPreferences4User(int user_id) {
+       return listOfUserPreferences;
+    }
+
+    @Override
+    public UserPreference FindUserPreference4User(String userPreferenceKey, int user_id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<UserPreference> getAllUserPerferences4User(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addUserPreference(UserPreference up, int user_id) {
+      return true;
     }
 
     @Override
-    public List<UserPreference> getHostoryUserPerferences4User(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateUserPreference(UserPreference up) {
+       return true;
     }
-
-    @Override
-    public boolean addUserPerferences(UserPreference up, int user_id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean updateUserPerferences(UserPreference up) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

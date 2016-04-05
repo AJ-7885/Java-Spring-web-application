@@ -6,13 +6,13 @@ import web_test.beans.UserPreference;
 
 public interface UserPreferencesService {
 
-    public List<UserPreference> getHistoryUserPerferences4User(int id);
+    List<UserPreference> getHistoryUserPreferences4User(int user_id);
 
-    public List<UserPreference> getAllUserPerferences4User(int id);
+    List<UserPreference> getAllUserPreferences4User(int user_id);
 
-    public List<UserPreference> getHostoryUserPerferences4User(int id);
+    UserPreference FindUserPreference4User(String userPreferenceKey, int user_id);
 
-    public boolean addUserPerferences(UserPreference up, int user_id);
+    boolean addUserPreference(UserPreference up, int user_id);
 
-    public boolean updateUserPerferences(UserPreference up);
+    boolean updateUserPreference(UserPreference up);
 }

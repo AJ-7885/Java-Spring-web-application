@@ -8,33 +8,32 @@ import web_test.DAO.UserPreferencesDAO;
 import web_test.beans.UserPreference;
 
 @Service
-class UserPerferencesServiceImpl implements UserPreferencesService {
+class UserPreferencesServiceImpl implements UserPreferencesService {
 
     private UserPreferencesDAO DAO;
 
     @Override
-    public List<UserPreference> getHistoryUserPerferences4User(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<UserPreference> getHistoryUserPreferences4User(int user_id) {
+        return DAO.getHistoryUserPreferences4User(user_id);
     }
 
     @Override
-    public List<UserPreference> getAllUserPerferences4User(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<UserPreference> getAllUserPreferences4User(int user_id) {
+        return DAO.getAllUserPreferences4User(user_id);
     }
 
     @Override
-    public List<UserPreference> getHostoryUserPerferences4User(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UserPreference FindUserPreference4User(String userPreferenceKey, int user_id) {
+        return DAO.FindUserPreference4User(userPreferenceKey, user_id);
     }
 
     @Override
-    public boolean addUserPerferences(UserPreference up, int user_id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addUserPreference(UserPreference up, int user_id) {
+        return DAO.addUserPreference(up, user_id);
     }
 
     @Override
-    public boolean updateUserPerferences(UserPreference up) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateUserPreference(UserPreference up) {
+        return DAO.updateUserPreference(up);
     }
-
 }
