@@ -1,6 +1,7 @@
 package web_test.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import web_test.beans.UserPreference;
 @Service
 class UserPreferencesServiceImpl implements UserPreferencesService {
 
+    @Autowired
     private UserPreferencesDAO DAO;
 
     @Override
@@ -23,7 +25,7 @@ class UserPreferencesServiceImpl implements UserPreferencesService {
     }
 
     @Override
-    public UserPreference FindUserPreference4User(String userPreferenceKey, int user_id) {
+    public List<UserPreference> FindUserPreference4User(String userPreferenceKey, int user_id) {
         return DAO.FindUserPreference4User(userPreferenceKey, user_id);
     }
 

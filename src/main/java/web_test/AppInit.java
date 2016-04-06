@@ -20,57 +20,53 @@ import web_test.config.WebMvcConfig;
 
 public class AppInit implements WebApplicationInitializer {
 
-	public static final String ATTRIBUTE_TRANSFORMER_POOL = "attribute.transformer_pool";
+    public static final String ATTRIBUTE_TRANSFORMER_POOL = "attribute.transformer_pool";
 
-	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
 
-		System.out.println("=== webapp initializer ===");
-		final AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        System.out.println("=== webapp initializer ===");
+        final AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
 
-		context.register(RootConfig.class);
-		this.addFilters(servletContext);
-		servletContext.addListener(new ContextLoaderListener(context));
-		servletContext.setInitParameter("defaultHtmlEscape", "true");
-		this.addAppServlet(servletContext);
-	}
+        context.register(RootConfig.class);
+        this.addFilters(servletContext);
+        servletContext.addListener(new ContextLoaderListener(context));
+        servletContext.setInitParameter("defaultHtmlEscape", "true");
+        this.addAppServlet(servletContext);
+    }
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~ public methods ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~ public methods ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~ protected methods ~~~~~~~~~~~~~~~~~~~~~~~
+    // ~~~~~~~~~~~~~~~~~~~~~~~ private methods ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~ protected methods ~~~~~~~~~~~~~~~~~~~~~~~
+    private void addFilters(final ServletContext servletContext) {
+        this.addCharacterEncodingFilter(servletContext);
+        this.checkDatabase(servletContext);
+    }
 
-	// ~~~~~~~~~~~~~~~~~~~~~~~ private methods ~~~~~~~~~~~~~~~~~~~~~~~~~
+    private void checkDatabase(ServletContext servletContext) {
+        System.out.println("Checking Database");
 
-	private void addFilters(final ServletContext servletContext) {
-		this.addCharacterEncodingFilter(servletContext);
-		this.checkDatabase(servletContext);
-	}
+    }
 
-	private void checkDatabase(ServletContext servletContext) {
-		System.out.println("Checking Database");
+    private void addCharacterEncodingFilter(final ServletContext servletContext) {
+        final FilterRegistration.Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter", new CharacterEncodingFilter());
+        characterEncodingFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/rest/*");
+        characterEncodingFilter.setInitParameter("encoding", "UTF-8");
+        characterEncodingFilter.setInitParameter("forceEncoding", "true");
+    }
 
-	}
+    private void addAppServlet(final ServletContext servletContext) {
+        final AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
+        appContext.register(WebMvcConfig.class);
 
-	private void addCharacterEncodingFilter(final ServletContext servletContext) {
-		final FilterRegistration.Dynamic characterEncodingFilter = servletContext.addFilter("characterEncodingFilter",
-				new CharacterEncodingFilter());
-		characterEncodingFilter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-		characterEncodingFilter.setInitParameter("encoding", "UTF-8");
-		characterEncodingFilter.setInitParameter("forceEncoding", "true");
-	}
+        final ServletRegistration.Dynamic appServlet = servletContext.addServlet("web_test", new DispatcherServlet(appContext));
+        appServlet.setLoadOnStartup(1);
 
-	private void addAppServlet(final ServletContext servletContext) {
-		final AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-		appContext.register(WebMvcConfig.class);
-
-		final ServletRegistration.Dynamic appServlet = servletContext.addServlet("web_test",
-				new DispatcherServlet(appContext));
-		appServlet.setLoadOnStartup(1);
-
-		final Set<String> mappingConflicts = appServlet.addMapping("/");
-		if (!mappingConflicts.isEmpty()) {
-			throw new IllegalStateException("'app' cannot be mapped to '/' under Tomcat versions <= 7.0.14");
-		}
-	}
+        final Set<String> mappingConflicts = appServlet.addMapping("/");
+        if (!mappingConflicts.isEmpty()) {
+            throw new IllegalStateException("'app' cannot be mapped to '/' under Tomcat versions <= 7.0.14");
+        }
+    }
 
 }

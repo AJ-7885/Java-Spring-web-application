@@ -10,7 +10,7 @@ public interface UserPreferencesService {
 
     List<UserPreference> getAllUserPreferences4User(int user_id);
 
-    UserPreference FindUserPreference4User(String userPreferenceKey, int user_id);
+    List<UserPreference> FindUserPreference4User(String userPreferenceKey, int user_id);
 
     boolean addUserPreference(UserPreference up, int user_id);
 

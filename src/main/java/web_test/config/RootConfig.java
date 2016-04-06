@@ -7,16 +7,15 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
 @EnableScheduling
-@ComponentScan("web_test.service")
+@ComponentScan("web_test")
 @EnableAsync
 public class RootConfig {
 
-    public RootConfig () {
+    public RootConfig() {
         System.out.println("=== Root Config ===");
     }
     // ~~~~~~~~~~~~~~~~~~~~~~~ public methods ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // ~~~~~~~~~~~~~~~~~~~~~~~ protected methods ~~~~~~~~~~~~~~~~~~~~~~~
-
     // ~~~~~~~~~~~~~~~~~~~~~~~ private methods ~~~~~~~~~~~~~~~~~~~~~~~~~
 }
