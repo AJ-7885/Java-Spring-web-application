@@ -77,7 +77,9 @@ public class SampleController {
 
         System.out.println(" Hereeeeee     ");
         System.out.println("      " + userP.getKey());
-        return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
+
+        ups.addUserPreference(userP, userP.getUserID());
+        return new ResponseEntity<List<UserPreference>>(HttpStatus.OK);
     }
 
     //------------------- update a User Preference------------------------------
