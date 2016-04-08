@@ -45,7 +45,7 @@ function loadUserPreferenceHistory4User() {
 }
 
 function saveUserPerference(newUP) {
-    $.ajax({url: "rest/userPreference4User",
+    $.ajax({url: "rest/userPreference4User/",
         type: "POST",
         crossDomain: true,
         data: JSON.stringify(newUP),
