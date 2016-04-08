@@ -81,7 +81,7 @@ public class SampleController {
     //------------------- update a User Preference------------------------------
     @RequestMapping(value = "/rest/userPreference4User/{id}", method = RequestMethod.PUT, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
-    public ResponseEntity<UserPreference> updateUserPreference4User(@PathVariable("id") long id, @RequestBody UserPreference userP) {
+    public ResponseEntity<UserPreference> updateUserPreference4User(@PathVariable("id") Long id, @RequestBody UserPreference userP) {
         if (id > 0){
             ups.updateUserPreference(id, userP);
         }
@@ -91,7 +91,7 @@ public class SampleController {
     //------------------- deactive a User Preference----------------------------
     @RequestMapping(value = "/rest/userPreference4User/{id}", method = RequestMethod.DELETE, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
-    public ResponseEntity<UserPreference> deactiveUserPreference4User(@PathVariable("id") int id) {
+    public ResponseEntity<UserPreference> deactiveUserPreference4User(@PathVariable("id") Long id) {
         if (id > 0) {
             ups.deactivateUserPreference(id);
         }
