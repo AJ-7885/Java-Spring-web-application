@@ -83,14 +83,16 @@ function editUserPreference(up_ID, key, value) {
 
 function editUserPreferenceSave() {
     if (user > 0) {
-        var newUserPreferenc = [{
-                "id": Math.random().toString(36).substr(2, 9),
-                "key": $('#upKeyE').val(),
-                "value": $('#upValE').val(),
-                "userID": user,
-                "timeStamp": Date.now(),
-                "isActive": "true"
-            }];
+        var newUserPreferenc = {
+            //since id is integer, quick fix
+            "id": Date.now(),
+            "key": $('#upKey').val(),
+            "value": $('#upVal').val(),
+            "userID": parseInt(user),
+            "timeStamp": Date.now(),
+            "isActive": true
+        };
+
 
         saveUserPerference(newUserPreferenc);
     } else {
