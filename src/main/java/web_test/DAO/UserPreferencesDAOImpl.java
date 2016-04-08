@@ -85,7 +85,20 @@ class UserPreferencesDAOImpl implements UserPreferencesDAO {
     }
 
     @Override
-    public boolean deactivateUserPreference(int up_id) {
+    public boolean updateUserPreference(long up_id, UserPreference upP) {
+        Predicate<UserPreference> upById = (up) -> up.getId() == up_id;
+        listOfUserPreferences.forEach(up -> {
+            if (upById.test(up)) {
+                up.setKey(upP.getKey());
+                up.setValue(upP.getValue());
+                up.setIsActive(upP.isIsActive());
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean deactivateUserPreference(long up_id) {
         Predicate<UserPreference> upById = (up) -> up.getId() == up_id;
         listOfUserPreferences.forEach(up -> {
             if (upById.test(up)) {

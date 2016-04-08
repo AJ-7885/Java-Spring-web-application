@@ -16,5 +16,7 @@ public interface UserPreferencesDAO {
 
     boolean updateUserPreference(UserPreference up);
 
-    public boolean deactivateUserPreference(int up_id);
+    boolean updateUserPreference(long up_id, UserPreference up);
+
+    boolean deactivateUserPreference(long up_id);
 }
