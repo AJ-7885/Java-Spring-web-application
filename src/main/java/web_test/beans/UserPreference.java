@@ -1,11 +1,13 @@
 package web_test.beans;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.Date;
 import java.util.Objects;
 
 public class UserPreference {
 
-    private int id;
+    private long id;
     private String key;
     private String value;
     private int userID;
@@ -16,7 +18,7 @@ public class UserPreference {
         super();
     }
 
-    public UserPreference(int id, String key, String value, int userID, Date timeStamp, boolean isActive) {
+    public UserPreference(long id, String key, String value, int userID, Date timeStamp, boolean isActive) {
         this();
         this.id = id;
         this.key = key;
@@ -26,11 +28,11 @@ public class UserPreference {
         this.isActive = isActive;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -77,7 +79,7 @@ public class UserPreference {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 83 * hash + this.id;
+        hash = (int) (83 * hash + this.id);
         hash = 83 * hash + Objects.hashCode(this.key);
         hash = 83 * hash + Objects.hashCode(this.value);
         hash = 83 * hash + this.userID;

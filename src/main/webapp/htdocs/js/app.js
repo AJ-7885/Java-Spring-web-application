@@ -61,14 +61,15 @@ function saveUserPerference(newUP) {
 }
 function addUserPreference() {
     if (user > 0) {
-        var newUserPreferenc = [{
-                "id": Math.random().toString(36).substr(2, 9),
+        var newUserPreferenc = {
+                //since id is integer, quick fix
+                "id": Date.now(),
                 "key": $('#upKey').val(),
                 "value": $('#upVal').val(),
-                "userID": user,
+                "userID": parseInt(user),
                 "timeStamp": Date.now(),
-                "isActive": "true"
-            }];
+                "isActive": true
+            };
 
         saveUserPerference(newUserPreferenc);
     } else {
