@@ -107,7 +107,7 @@
                                         <label for="upValE">Value</label>
                                         <input class="form-control" type="text" id="upValE" name="upValE" placeholder="Preference Value" required/>
                                     </fieldset>
-                                    <button  class="btn btn-primary" onclick="javascript:editUserPreferenceSave()">Save</button>
+                                    <button  class="btn btn-primary" data-dismiss="modal" onclick="javascript:editUserPreferenceSave()">Save</button>
                                 </form>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                                     <label for="upVal">Value</label>
                                     <input class="form-control" type="text" id="upVal" name="upVal" placeholder="Preference Value" required/>
                                 </fieldset>
-                                <button  class="btn btn-primary" onclick="javascript:addUserPreference()">Save</button>
+                                <button  class="btn btn-primary" data-dismiss="modal" onclick="javascript:addUserPreference();">Save</button>
                             </form>
                         </div>
                         <div class="modal-footer">
