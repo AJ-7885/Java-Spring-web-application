@@ -74,12 +74,13 @@ class UserPreferencesDAOImpl implements UserPreferencesDAO {
 
     @Override
     public boolean addUserPreference(UserPreference up, int user_id) {
-         listOfUserPreferences.add(up);
+        listOfUserPreferences.add(up);
         return true;
     }
 
     @Override
     public boolean updateUserPreference(UserPreference up) {
+        listOfUserPreferences.add(up);
         return true;
     }
 
