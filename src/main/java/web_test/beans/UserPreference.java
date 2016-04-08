@@ -1,6 +1,5 @@
 package web_test.beans;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.Date;
 import java.util.Objects;

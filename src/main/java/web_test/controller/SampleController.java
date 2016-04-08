@@ -30,6 +30,7 @@ public class SampleController {
     private UserPreferencesService ups;
     // ~~~~~~~~~~~~~~~~~~~~~~~ public methods ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    //--------- Retrive User Preferences for a user ----------------------------
     @RequestMapping(value = "/rest/userPreferences/{userID}", method = RequestMethod.GET, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<List<UserPreference>> getUserPreferences4User(@PathVariable("userID") String user_id) {
@@ -41,11 +42,7 @@ public class SampleController {
         return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
     }
 
-    /**
-     *
-     * @param user_id
-     * @return List of History UserPreference json , the filter do not sort base
-     */
+    //--------- Retrive History of user User Preferences------------------------
     @RequestMapping(value = "/rest/historyUserPreferences/{userID}", method = RequestMethod.GET, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<List<UserPreference>> getHistoryUserPreferences4User(@PathVariable("userID") String user_id) {
@@ -59,6 +56,8 @@ public class SampleController {
         return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
     }
 
+    //------------------- Find  User Preferences for a user--------------------
+
     @RequestMapping(value = "/rest/findUserPreference4User/{userID}/{searchkey}", method = RequestMethod.GET, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<List<UserPreference>> findUserPreference4User(@PathVariable("userID") String user_id, @PathVariable("searchkey") String search) {
@@ -70,7 +69,7 @@ public class SampleController {
         return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
     }
 
-    //------------------- add a User Preference------------------------------
+    //---------------------- add a User Preference------------------------------
     @RequestMapping(value = "/rest/userPreference4User", method = RequestMethod.POST, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<List<UserPreference>> addUserPreference4User(@RequestBody UserPreference userP) {
@@ -82,7 +81,7 @@ public class SampleController {
     @RequestMapping(value = "/rest/userPreference4User/{id}", method = RequestMethod.PUT, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<UserPreference> updateUserPreference4User(@PathVariable("id") Long id, @RequestBody UserPreference userP) {
-        if (id > 0){
+        if (id > 0) {
             ups.updateUserPreference(id, userP);
         }
         return new ResponseEntity<UserPreference>(userP, HttpStatus.OK);
