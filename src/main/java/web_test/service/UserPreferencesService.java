@@ -17,4 +17,6 @@ public interface UserPreferencesService {
     boolean updateUserPreference(UserPreference up);
     
     public boolean deactivateUserPreference(int up_id) ;
+
+    boolean updateUserPreference(long id, UserPreference userP);
 }

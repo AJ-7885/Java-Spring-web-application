@@ -44,4 +44,8 @@ class UserPreferencesServiceImpl implements UserPreferencesService {
         return DAO.deactivateUserPreference(up_id);
     }
 
+    @Override
+    public boolean updateUserPreference(long id, UserPreference up) {
+        return DAO.updateUserPreference(id , up);
+    }
 }
