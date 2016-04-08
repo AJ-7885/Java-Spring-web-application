@@ -10,7 +10,7 @@ function loadUserPreference4User(user_ID) {
             $('#userPreferenaceDisplayTable').append('<thead><tr><th>Preference</th><th>Value</th><th>Edit</th><th>Deactivate</th></tr></thead><tbody>');
 
             for (var i = 0; i < data.length; i++) {
-                $('#userPreferenaceDisplayTable').append('<tr><td>' + data[i].key + '</td> <td>' + data[i].value + '</td> <td> <button type="button" data-toggle="modal" data-target="#editUserPreference" onclick="editUserPreference(' + data[i].id + ',\'' + data[i].key + '\',\'' + data[i].value + '\')" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></button></td><td><a href="javascript:removeUserPreference(' + data[i].id + ')" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-trash"></span></a></td>');
+                $('#userPreferenaceDisplayTable').append('<tr id=' + data[i].id + '><td>' + data[i].key + '</td> <td>' + data[i].value + '</td> <td> <button type="button" onclick="editUserPreference(' + data[i].id + ',\'' + data[i].key + '\',\'' + data[i].value + '\')" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-pencil"></span></button></td><td><a href="javascript:removeUserPreference(' + data[i].id + ')" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-trash"></span></a></td>');
             }
             $('#userPreferenaceDisplayTable').append('</tbody>');
         },
@@ -61,8 +61,8 @@ function saveUserPerference(newUP) {
 }
 
 function putUserPerference(newUP) {
-    $.ajax({url: "rest/userPreference4User/" + newUP.user,
-        type: "POST",
+    $.ajax({url: "rest/userPreference4User/" + newUP.id,
+        type: "PUT",
         crossDomain: true,
         data: JSON.stringify(newUP),
         contentType: 'application/json; charset=utf-8',
@@ -96,15 +96,20 @@ function addUserPreference() {
 function editUserPreference(up_ID, key, value) {
     $("#upKeyE").val(key);
     $("#upValE").val(value);
+    $("#up_id").val(up_ID);
+
+    $('#editUserPreference').modal('show');
+
 }
 
 function editUserPreferenceSave() {
+    var id = $("#up_id").val();
     if (user > 0) {
         var newUserPreferenc = {
             //since id is integer, quick fix
-            "id": Date.now(),
-            "key": $('#upKey').val(),
-            "value": $('#upVal').val(),
+            "id": id,
+            "key": $('#upKeyE').val(),
+            "value": $('#upValE').val(),
             "userID": parseInt(user),
             "timeStamp": Date.now(),
             "isActive": true
