@@ -59,6 +59,23 @@ function saveUserPerference(newUP) {
         }
     });
 }
+
+function putUserPerference(newUP) {
+    $.ajax({url: "rest/userPreference4User/" + newUP.user,
+        type: "POST",
+        crossDomain: true,
+        data: JSON.stringify(newUP),
+        contentType: 'application/json; charset=utf-8',
+        dataType: "json",
+        success: function (data) {
+            loadUserPreference4User(user);
+        },
+        error: function (xhr,status,error) {
+            alert("Error on save or update User Preference");
+        }
+    });
+}
+
 function addUserPreference() {
     if (user > 0) {
         var newUserPreferenc = {
@@ -94,7 +111,7 @@ function editUserPreferenceSave() {
         };
 
 
-        saveUserPerference(newUserPreferenc);
+        putUserPerference(newUserPreferenc);
     } else {
         alert("Please select a user first.");
     }
