@@ -55,7 +55,7 @@ function saveUserPerference(newUP) {
             loadUserPreference4User(user);
         },
         error: function (xhr,status,error) {
-            alert("Error on save or update User Preference");
+            //alert("Error on save or update User Preference");
         }
     });
 }
@@ -71,7 +71,7 @@ function putUserPerference(newUP) {
             loadUserPreference4User(user);
         },
         error: function (xhr,status,error) {
-            alert("Error on save or update User Preference");
+            //alert("Error on save or update User Preference");
         }
     });
 }
