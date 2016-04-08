@@ -82,7 +82,7 @@ public class SampleController {
     @RequestMapping(value = "/rest/userPreference4User/{id}", method = RequestMethod.PUT, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<UserPreference> updateUserPreference4User(@PathVariable("id") long id, @RequestBody UserPreference userP) {
-        ups.updateUserPreference(userP);
+          ups.addUserPreference(userP, id);
         return new ResponseEntity<UserPreference>(HttpStatus.OK);
     }
 

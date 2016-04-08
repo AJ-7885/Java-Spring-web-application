@@ -55,7 +55,7 @@ function saveUserPerference(newUP) {
             loadUserPreference4User(user);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert("error");
+            alert("Error on save or update User Preference");
         }
     });
 }
