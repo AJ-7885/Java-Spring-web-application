@@ -38,4 +38,10 @@ class UserPreferencesServiceImpl implements UserPreferencesService {
     public boolean updateUserPreference(UserPreference up) {
         return DAO.updateUserPreference(up);
     }
+
+    @Override
+    public boolean deactivateUserPreference(int up_id) {
+        return DAO.deactivateUserPreference(up_id);
+    }
+
 }

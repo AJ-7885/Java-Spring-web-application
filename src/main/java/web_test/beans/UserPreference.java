@@ -3,7 +3,6 @@ package web_test.beans;
 import java.util.Date;
 import java.util.Objects;
 
-
 public class UserPreference {
 
     private int id;
@@ -116,6 +115,5 @@ public class UserPreference {
         }
         return true;
     }
-    
-    
+
 }

@@ -38,7 +38,6 @@ public class AppInit implements WebApplicationInitializer {
     // ~~~~~~~~~~~~~~~~~~~~~~~ public methods ~~~~~~~~~~~~~~~~~~~~~~~~~~
     // ~~~~~~~~~~~~~~~~~~~~~~~ protected methods ~~~~~~~~~~~~~~~~~~~~~~~
     // ~~~~~~~~~~~~~~~~~~~~~~~ private methods ~~~~~~~~~~~~~~~~~~~~~~~~~
-
     private void addFilters(final ServletContext servletContext) {
         this.addCharacterEncodingFilter(servletContext);
         this.checkDatabase(servletContext);

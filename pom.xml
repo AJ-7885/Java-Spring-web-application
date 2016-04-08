@@ -66,14 +66,7 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4.1207</version>
-        </dependency>
-		
-        <dependency>
-            <groupId>org.projectlombok</groupId> 
-            <artifactId>lombok</artifactId> 
-            <version>1.16.8</version>
-            <scope>provided</scope> 
-        </dependency>  
+        </dependency> 
         
         <dependency>
             <groupId>javax.ws.rs</groupId>
@@ -92,15 +85,14 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.3.0</version>
         </dependency> 
+        
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>web_test</finalName>
     </build>
-    <!--<repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>-->
 </project>

@@ -32,19 +32,13 @@ public class SampleController {
 
     @RequestMapping(value = "/rest/userPreferences/{userID}", method = RequestMethod.GET, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
-    public List<UserPreference> getUserPreferences4User(@PathVariable("userID") String user_id) {
-        StringBuilder sb = new StringBuilder();
+    public ResponseEntity<List<UserPreference>> getUserPreferences4User(@PathVariable("userID") String user_id) {
         int id = Integer.parseInt(user_id);
         if (id > 0) {
             List<UserPreference> u = ups.getAllUserPreferences4User(id);
-            u.forEach(up -> {
-                System.out.println("     " + up);
-                sb.append(up);
-                sb.append("\n");
-            });
-            return u;
+            return new ResponseEntity<List<UserPreference>>(u, HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
     }
 
     /**
@@ -54,60 +48,54 @@ public class SampleController {
      */
     @RequestMapping(value = "/rest/historyUserPreferences/{userID}", method = RequestMethod.GET, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
-    public List<UserPreference> getHistoryUserPreferences4User(@PathVariable("userID") String user_id) {
+    public ResponseEntity<List<UserPreference>> getHistoryUserPreferences4User(@PathVariable("userID") String user_id) {
         int id = Integer.parseInt(user_id);
         if (id > 0) {
             StringBuilder sb = new StringBuilder();
             List<UserPreference> u = ups.getHistoryUserPreferences4User(id);
-            u.forEach(up -> {
-                System.out.println("     " + up);
-                sb.append(up);
-                sb.append("\n");
-            });
-            return u;
+
+            return new ResponseEntity<List<UserPreference>>(u, HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "/rest/findUserPreference4User/{userID}/{searchkey}", method = RequestMethod.GET, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
-    public List<UserPreference> findUserPreference4User(@PathVariable("userID") String user_id, @PathVariable("searchkey") String search) {
+    public ResponseEntity<List<UserPreference>> findUserPreference4User(@PathVariable("userID") String user_id, @PathVariable("searchkey") String search) {
         int id = Integer.parseInt(user_id);
         if (id > 0) {
-            StringBuilder sb = new StringBuilder();
             List<UserPreference> u = ups.FindUserPreference4User(search, id);
-            u.forEach(up -> {
-                System.out.println("     " + up);
-                sb.append(up);
-                sb.append("\n");
-            });
-            return u;
+            return new ResponseEntity<List<UserPreference>>(u, HttpStatus.OK);
         }
-        return null;
+        return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
     }
 
     //------------------- add a User Preference------------------------------
-    @RequestMapping(value = "/rest/userPreference4User/", method = RequestMethod.POST, headers = {"Accept=application/json"}, produces = "application/json")
+    @RequestMapping(value = "/rest/userPreference4User", method = RequestMethod.POST, headers = {"Accept=application/json"}, consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<Void> addUserPreference4User(@RequestBody UserPreference userP) {
+    public ResponseEntity<List<UserPreference>> addUserPreference4User(@RequestBody UserPreference userP) {
 
-        return null;
+        System.out.println(" Hereeeeee     ");
+        System.out.println("      " + userP.getKey());
+        return new ResponseEntity<List<UserPreference>>(HttpStatus.NO_CONTENT);
     }
 
     //------------------- update a User Preference------------------------------
     @RequestMapping(value = "/rest/userPreference4User/{id}", method = RequestMethod.PUT, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
-    public ResponseEntity<Void> updateUserPreference4User(@PathVariable("id") long id, @RequestBody UserPreference userP) {
+    public ResponseEntity<UserPreference> updateUserPreference4User(@PathVariable("id") long id, @RequestBody UserPreference userP) {
 
-        return null;
+        return new ResponseEntity<UserPreference>(HttpStatus.OK);
     }
 
     //------------------- deactive a User Preference----------------------------
     @RequestMapping(value = "/rest/userPreference4User/{id}", method = RequestMethod.DELETE, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
-    public ResponseEntity<Void> deactiveUserPreference4User(@PathVariable("id") int id) {
-
-        return null;
+    public ResponseEntity<UserPreference> deactiveUserPreference4User(@PathVariable("id") int id) {
+        if (id > 0) {
+            ups.deactivateUserPreference(id);
+        }
+        return new ResponseEntity<UserPreference>(HttpStatus.NO_CONTENT);
     }
 
     // ~~~~~~~~~~~~~~~~~~~~~~~ protected methods ~~~~~~~~~~~~~~~~~~~~~~~

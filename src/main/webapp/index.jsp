@@ -1,97 +1,153 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <!-- Include one of jTable styles. -->
-        <!--<link href="http://www.jtable.org/Scripts/jtable/themes/metro/blue/jtable.css" rel="stylesheet" type="text/css" />-->
-        <script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Include jTable script file. -->
-        <!--<script src="http://www.jtable.org/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>-->
-
-    <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1">     
+        <link href="htdocs/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="htdocs/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="htdocs/css/app.css" rel="stylesheet" type="text/css"/>
+    <body >
         <div class="container">
-
-            <div class="row">
-                <table class="table-hover">
-                    <tr>
-                        <th>Preferences</th>
-                        <th>Values</th>
-                    </tr>
-                    <tr>
-                        <td>TEST 1 </td>
-                        <td> 1212</td>
-                    </tr>
-                </table>
-                <div>
-                    <p class="greeting-id">The ID is </p>
-                    <p class="greeting-content">The content is </p>
+            <div class="jumbotron">
+                <h1>User Preference List</h1>
+                <div class="row" >
+                    <fieldset class="form-group ">
+                        <select class="form-control" id="userSelector">
+                            <option>Please Select User</option>
+                            <option value="1">User A</option>
+                            <option value="2">User B</option>
+                            <option value="3">User C</option>
+                            <option value="4">User D</option>
+                        </select>
+                    </fieldset>
+                    <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#userPreferenceHistory" onclick="javascript:loadUserPreferenceHistory4User()">User Preferences History</button>
+                    <button type="button" class="btn btn-primary btn-large" data-toggle="modal" data-target="#addUserPreference" >Add New User Preference</button>
                 </div>
             </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover" id="userPreferenaceDisplayTable">
+                    <thead>
+                        <tr>
+                            <th>Preference</th>
+                            <th>Value</th>
+                            <th>Edit</th>
+                            <th>Deactivate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+            <!-- User Preference History -->
+            <div id="userPreferenceHistory" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- User Preference History content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">User Preference History</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="historyUserPreferenaceTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Preference</th>
+                                            <th>Value</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Edit User Preference -->
+            <div id="editUserPreference" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- User Preference form-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Edit User Preference</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <form method="POST">
+                                    <fieldset class="form-group">
+                                        <label for="upKeyE">Preference</label>
+                                        <input class="form-control" type="text" id="upKeyE" name="upKeyE" placeholder="Preference" required/>
+                                    </fieldset>
+                                    <fieldset class="form-group">
+                                        <label for="upValE">Value</label>
+                                        <input class="form-control" type="text" id="upValE" name="upValE" placeholder="Preference Value" required/>
+                                    </fieldset>
+                                    <button  class="btn btn-primary" onclick="javascript:editUserPreferenceSave()">Save</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button  class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Add User Preference -->
+            <div id="addUserPreference" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!--Add  User Preference form-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add User Preference</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <fieldset class="form-group">
+                                    <label for="upKey">Preference</label>
+                                    <input class="form-control" type="text" id="upKey" name="upKey" placeholder="Preference" required/>
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <label for="upVal">Value</label>
+                                    <input class="form-control" type="text" id="upVal" name="upVal" placeholder="Preference Value" required/>
+                                </fieldset>
+                                <button  class="btn btn-primary" onclick="javascript:addUserPreference()">Save</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-        <script>
-
-            $(document).ready(function () {
-          
-//                $.ajax({
-//                    type: "GET",
-//                    dataType: "json",
-//                    url: "http://localhost:8080/web_test/rest/userPreferences/1",
-//                    success: function (data) {
-//                        alert(data);
-//                    },
-//                    error: function (jqXHR, textStatus, errorThrown) {
-//                        alert("error");
-//                    }
-//                });
-
-
-
-                $('#PersonTableContainer').jtable({
-                  
-                    title: 'Table of people',
-                    actions: {
-                        listAction: 'http://localhost:8080/web_test/rest/userPreferences/1',
-                        createAction: '/GettingStarted/CreatePerson',
-                        updateAction: '/GettingStarted/UpdatePerson',
-                        deleteAction: '/GettingStarted/DeletePerson'
-                    },
-                    fields: {
-                        PersonId: {
-                            key: true,
-                            list: false
-                        },
-                        Name: {
-                            title: 'Author Name',
-                            width: '40%'
-                        },
-                        Age: {
-                            title: 'Age',
-                            width: '20%'
-                        },
-                        RecordDate: {
-                            title: 'Record date',
-                            width: '30%',
-                            type: 'date',
-                            create: false,
-                            edit: false
-                        }
-                    }
-                });
-
-
-
-
-            });
-        </script>
+        <script src="htdocs/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script src="htdocs/js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="htdocs/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="htdocs/js/app.js" type="text/javascript"></script>
     </body>
 </html>
