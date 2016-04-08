@@ -75,19 +75,16 @@ public class SampleController {
     @ResponseBody
     public ResponseEntity<List<UserPreference>> addUserPreference4User(@RequestBody UserPreference userP) {
 
-        System.out.println(" Hereeeeee     ");
-        System.out.println("      " + userP.getKey());
-
         ups.addUserPreference(userP, userP.getUserID());
-        return new ResponseEntity<List<UserPreference>>(HttpStatus.OK);
+        return new ResponseEntity<List<UserPreference>>(ups.getAllUserPreferences4User(userP.getUserID()), HttpStatus.OK);
     }
 
     //------------------- update a User Preference------------------------------
     @RequestMapping(value = "/rest/userPreference4User/{id}", method = RequestMethod.PUT, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<UserPreference> updateUserPreference4User(@PathVariable("id") long id, @RequestBody UserPreference userP) {
-          ups.addUserPreference(userP, id);
-        return new ResponseEntity<UserPreference>(HttpStatus.OK);
+        ups.addUserPreference(userP, userP.getUserID());
+        return new ResponseEntity<UserPreference>(userP, HttpStatus.OK);
     }
 
     //------------------- deactive a User Preference----------------------------
