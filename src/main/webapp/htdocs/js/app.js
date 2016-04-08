@@ -54,7 +54,7 @@ function saveUserPerference(newUP) {
         success: function (data) {
             loadUserPreference4User(user);
         },
-        error: function (xhr,status,error) {
+        error: function (xhr, status, error) {
             //alert("Error on save or update User Preference");
         }
     });
@@ -70,7 +70,7 @@ function putUserPerference(newUP) {
         success: function (data) {
             loadUserPreference4User(user);
         },
-        error: function (xhr,status,error) {
+        error: function (xhr, status, error) {
             //alert("Error on save or update User Preference");
         }
     });
@@ -79,14 +79,14 @@ function putUserPerference(newUP) {
 function addUserPreference() {
     if (user > 0) {
         var newUserPreferenc = {
-                //since id is integer, quick fix
-                "id": Date.now(),
-                "key": $('#upKey').val(),
-                "value": $('#upVal').val(),
-                "userID": parseInt(user),
-                "timeStamp": Date.now(),
-                "isActive": true
-            };
+            //since id is integer, quick fix
+            "id": Date.now(),
+            "key": $('#upKey').val(),
+            "value": $('#upVal').val(),
+            "userID": parseInt(user),
+            "timeStamp": Date.now(),
+            "isActive": true
+        };
 
         saveUserPerference(newUserPreferenc);
     } else {
