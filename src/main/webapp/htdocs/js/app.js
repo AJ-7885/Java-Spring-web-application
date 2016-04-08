@@ -15,7 +15,7 @@ function loadUserPreference4User(user_ID) {
             $('#userPreferenaceDisplayTable').append('</tbody>');
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            //alert("error");
+            alert("error");
         }
     });
 }
@@ -36,7 +36,7 @@ function loadUserPreferenceHistory4User() {
                 $('#historyUserPreferenaceTable').append('</tbody>');
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                //alert("error");
+                alert("error");
             }
         });
     } else {
@@ -55,7 +55,7 @@ function saveUserPerference(newUP) {
             loadUserPreference4User(user);
         },
         error: function (xhr, status, error) {
-            //alert("Error on save or update User Preference");
+            alert("Error on save or update User Preference");
         }
     });
 }
@@ -71,7 +71,7 @@ function putUserPerference(newUP) {
             loadUserPreference4User(user);
         },
         error: function (xhr, status, error) {
-            //alert("Error on save or update User Preference");
+            alert("Error on save or update User Preference");
         }
     });
 }
@@ -113,7 +113,6 @@ function editUserPreferenceSave() {
             "timeStamp": Date.now(),
             "isActive": true
         };
-
 
         saveUserPerference(newUserPreferenc);
     } else {
