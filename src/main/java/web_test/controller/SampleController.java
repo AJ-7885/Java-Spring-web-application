@@ -74,6 +74,10 @@ public class SampleController {
     @RequestMapping(value = "/rest/userPreference4User/", method = RequestMethod.POST, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<List<UserPreference>> addUserPreference4User(@RequestBody UserPreference userP) {
+
+        System.out.println(" Hereeeeee     ");
+        System.out.println("      " + userP.getKey());
+
         ups.addUserPreference(userP, userP.getUserID());
         return new ResponseEntity<List<UserPreference>>(HttpStatus.OK);
     }
