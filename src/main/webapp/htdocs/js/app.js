@@ -15,7 +15,7 @@ function loadUserPreference4User(user_ID) {
             $('#userPreferenaceDisplayTable').append('</tbody>');
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert("error");
+            //alert("error");
         }
     });
 }
@@ -31,12 +31,12 @@ function loadUserPreferenceHistory4User() {
                 $('#historyUserPreferenaceTable').append('<thead><tr><th>Preference</th><th>Value</th><th>Status</th><th>Date</th></tr></thead><tbody>');
 
                 for (var i = 0; i < data.length; i++) {
-                    $('#historyUserPreferenaceTable').append(' <tr><td>' + data[i].key + '</td> <td>' + data[i].value + '</td> <td>' + ((data[i].isActive) == true ? "Enable" : "Disable") + '</td><td>' + new Date(data[i].timeStamp).getMonth() + "/" + new Date(data[i].timeStamp).getDay() + "/" + new Date(data[i].timeStamp).getFullYear() + '</td>');
+                    $('#historyUserPreferenaceTable').append('<tr id=' + data[i].id + '><td>' + data[i].key + '</td> <td>' + data[i].value + '</td> <td>' + ((data[i].isActive) == true ? "Enable" : "Disable") + '</td><td>' + new Date(data[i].timeStamp).getMonth() + "/" + new Date(data[i].timeStamp).getDay() + "/" + new Date(data[i].timeStamp).getFullYear() + '</td>');
                 }
                 $('#historyUserPreferenaceTable').append('</tbody>');
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                alert("error");
+                //alert("error");
             }
         });
     } else {
@@ -103,11 +103,10 @@ function editUserPreference(up_ID, key, value) {
 }
 
 function editUserPreferenceSave() {
-    var id = $("#up_id").val();
     if (user > 0) {
         var newUserPreferenc = {
             //since id is integer, quick fix
-            "id": id,
+            "id": Date.now(),
             "key": $('#upKeyE').val(),
             "value": $('#upValE').val(),
             "userID": parseInt(user),
@@ -116,7 +115,7 @@ function editUserPreferenceSave() {
         };
 
 
-        putUserPerference(newUserPreferenc);
+        saveUserPerference(newUserPreferenc);
     } else {
         alert("Please select a user first.");
     }
