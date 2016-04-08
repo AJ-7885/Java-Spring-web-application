@@ -93,7 +93,12 @@
                         </div>
                         <div class="modal-body">
                             <div class="table-responsive">
-                                <form method="POST">
+                                <form>
+                                    <fieldset class="form-group" style="display: none">
+                                        <label for="up_id">ID</label>
+                                        <input class="form-control" type="text" id="up_id" name="up_id"/>
+                                    </fieldset>
+
                                     <fieldset class="form-group">
                                         <label for="upKeyE">Preference</label>
                                         <input class="form-control" type="text" id="upKeyE" name="upKeyE" placeholder="Preference" required/>
