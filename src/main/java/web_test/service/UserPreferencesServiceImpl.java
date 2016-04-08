@@ -40,7 +40,7 @@ class UserPreferencesServiceImpl implements UserPreferencesService {
     }
 
     @Override
-    public boolean deactivateUserPreference(int up_id) {
+    public boolean deactivateUserPreference(long up_id) {
         return DAO.deactivateUserPreference(up_id);
     }
 
