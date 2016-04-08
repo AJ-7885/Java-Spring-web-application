@@ -62,11 +62,11 @@ function saveUserPerference(newUP) {
 function addUserPreference() {
     if (user > 0) {
         var newUserPreferenc = [{
-                //  "id": Math.random().toString(36).substr(2, 9),
+                "id": Math.random().toString(36).substr(2, 9),
                 "key": $('#upKey').val(),
                 "value": $('#upVal').val(),
-                //     "userID": user,
-                //  "timeStamp": Date.now(),
+                "userID": user,
+                "timeStamp": Date.now(),
                 "isActive": "true"
             }];
 
@@ -87,7 +87,7 @@ function editUserPreferenceSave() {
                 "key": $('#upKeyE').val(),
                 "value": $('#upValE').val(),
                 "userID": user,
-                //  "timeStamp": Date.now(),
+                "timeStamp": Date.now(),
                 "isActive": "true"
             }];
 
