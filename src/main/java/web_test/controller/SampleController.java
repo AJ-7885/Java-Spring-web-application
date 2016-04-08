@@ -71,7 +71,7 @@ public class SampleController {
     }
 
     //------------------- add a User Preference------------------------------
-    @RequestMapping(value = "/rest/userPreference4User", method = RequestMethod.POST, headers = {"Accept=application/json"}, consumes = "application/json")
+    @RequestMapping(value = "/rest/userPreference4User", method = RequestMethod.POST, headers = {"Accept=application/json"}, produces = "application/json")
     @ResponseBody
     public ResponseEntity<List<UserPreference>> addUserPreference4User(@RequestBody UserPreference userP) {
 
