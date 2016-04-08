@@ -54,7 +54,7 @@ function saveUserPerference(newUP) {
         success: function (data) {
             loadUserPreference4User(user);
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: function (xhr,status,error) {
             alert("Error on save or update User Preference");
         }
     });
@@ -106,7 +106,7 @@ function removeUserPreference(up_ID) {
             loadUserPreference4User(user);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            alert("error");
+            alert("Error on remove user");
         }
     });
 }
