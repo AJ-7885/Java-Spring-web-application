@@ -7,7 +7,7 @@ import web_test.service.UserPreferencesService;
 
 /**
  * 
- * @author MAVAJ SUN CO <info@MavajSunCo.com>
+ * @author https://github.com/AJ-7885
  */
 public class UserPreferencesDAOTest {
     
